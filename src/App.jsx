@@ -1,10 +1,14 @@
-import { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import { useAuthState } from "./utilities/firebase";
+
 import Landing from "./components/Landing";
 
 const App = () => {
-  return <Landing />;
+  const [user] = useAuthState();
+
+  return <Landing user={user} />;
 };
 
 export default App;

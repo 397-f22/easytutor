@@ -1,40 +1,23 @@
 import "./Landing.css";
-import { signOut } from "../utilities/firebase";
+import logodark from "../static/logodark.svg";
 
-import { signInWithGoogle, useAuthState } from "../utilities/firebase";
+import { SignIn, SignOut } from "./Auth";
 
-import { Button } from "react-bootstrap";
-import { CarFrontFill } from "react-bootstrap-icons";
-import { Navigate } from "react-router-dom";
+import Image from "react-bootstrap/Image";
 
-const LandingLogIn = () => {
-  return (
-    <Button variant="light" size="lg" onClick={signInWithGoogle}>
-      Sign In
-    </Button>
-  );
-};
-
-const Landing = () => {
-  const [user] = useAuthState();
-
+const Landing = ({ user }) => {
   return user ? (
-    <Button variant="light" size="lg" onClick={signOut}>
-      Sign Out
-    </Button>
+    <SignOut />
   ) : (
     <div className="landing">
-      <CarFrontFill size={100} />
-      <div className="logo">
-        <div className="logo-black">Easy</div>
-        <div>Tutor</div>
-      </div>
-      <div className="subheading">Get easy, on-demand tutoring!</div>
+      <Image src={logodark} width={320}></Image>
+      <div className="subheading">Get easy, on-demand tutoring for free!</div>
       <p className="description">
-        EasyTutor lets you redeem in app credits to receive tutoring from your
-        peers on demand!
+        EasyTutor is a fast and easy tutoring exchange service for Northwestern
+        students. Earn EasyTutor credits by helping others, then spend those
+        credits to get help when you need it!
       </p>
-      <LandingLogIn />
+      <SignIn />
     </div>
   );
 };
