@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext");
+.landing {
+  display: flex;
+  background-color: #bface0;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Montserrat";
+  padding: 10%;
+  height: 100vh;
+  width: 100%;
+}
+
+.logo {
+  color: #645caa;
+  display: flex;
+  flex-direction: row;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.logo-black {
+  font-family: "Montserrat";
+  color: black;
+}
+
+.subheading {
+  font-style: italic;
+  font-size: 24px;
+  line-height: 1;
+  text-align: center;
+  color: #645caa;
+  font-weight: 500;
+  padding-bottom: 10px;
+}
+
+.description {
+  text-align: center;
+  padding: 5%;
+}
+
+.signin {
+  margin: 0px;
+}
