@@ -3,6 +3,7 @@ import "./Class.css";
 import Card from "react-bootstrap/Card";
 // import { getUser } from "./User";
 import { getUserWithId } from "../utilities/firebase";
+
 // import pikachu from "../../data/pikachu.png";
 
 // const getOrganizer = (ride) => {
@@ -25,8 +26,7 @@ import { getUserWithId } from "../utilities/firebase";
 //   }
 // };
 
-export const Class = ({data}) => {
-
+export const Class = ({ data }) => {
   // const date = new Date(ride.date).toLocaleString("en-US", {
   //   month: "long",
   //   day: "numeric",
@@ -48,17 +48,11 @@ export const Class = ({data}) => {
         </div>
         <div className="cardBodyDiv">
           <Card.Body>
-            <Card.Title>
-              {data.name}
-            </Card.Title>
-            <Card.Text>
-              Time: {data.time}
-            </Card.Text>
+            <Card.Title>{data.name}</Card.Title>
+            <Card.Text>Time: {data.time}</Card.Text>
             <Card.Text>Location: {data.location}</Card.Text>
             <div>
-              <p className="alignleft">
-                {data.credits}
-              </p>
+              <p className="alignleft">{data.credits} credits</p>
               {/* <Available user={user} ride={ride} /> */}
             </div>
           </Card.Body>

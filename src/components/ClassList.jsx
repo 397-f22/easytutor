@@ -83,8 +83,8 @@ export const ClassList = () => {
           ride.key = id;
           return <Ride user={user} key={id} ride={ride} handleShow={handleShow} />;
         })} */}
-        {Object.entries(data.courses).map((course) => {
-          return <Class data={course[1]} />;
+        {Object.entries(data.courses).map(([id, course]) => {
+          return <Class data={course} />;
         })}
       </div>
       {/* <RideInfo

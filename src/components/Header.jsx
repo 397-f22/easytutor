@@ -4,9 +4,9 @@ import { Button, Container, Navbar, Offcanvas } from "react-bootstrap";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { signInWithGoogle, signOut, useAuthState } from "../utilities/firebase";
 
-import { Plus } from "react-bootstrap-icons";
 // import { getUser } from "./User";
 import { Logo } from "./Logo";
+import { Plus } from "react-bootstrap-icons";
 
 const SignOutButton = () => {
   const navigate = useNavigate();
@@ -42,13 +42,13 @@ export const Header = ({ showAddRides, user }) => {
           <Offcanvas.Header closeButton></Offcanvas.Header>
           <Offcanvas.Body>
             <h1>
-              <Link className="plain-link " to="/allRides">
+              <Link className="plain-link " to="/teach">
                 Teach
               </Link>
-              <Link className="plain-link" to="/myRides">
+              <Link className="plain-link" to="/learn">
                 Learn
               </Link>
-              <Link className="plain-link" to="/myRides">
+              <Link className="plain-link" to="/myClasses">
                 My Classes
               </Link>
             </h1>
