@@ -26,7 +26,7 @@ import { getUserWithId } from "../utilities/firebase";
 //   }
 // };
 
-export const Class = ({ data }) => {
+export const Class = ({ data, type }) => {
   // const date = new Date(ride.date).toLocaleString("en-US", {
   //   month: "long",
   //   day: "numeric",
@@ -37,8 +37,16 @@ export const Class = ({ data }) => {
 
   // const organizer = getOrganizer(ride);
 
+  const handleClick = (evt) => {
+    if (type === "learn") {
+      alert("No tutor signed up yet");
+    } else {
+      alert(`You signed up to tutor this session`);
+    }
+  };
+
   return (
-    <Card className="m-3">
+    <Card className="m-3" onClick={handleClick}>
       <div className="row">
         <div className="profilePicDiv">
           {/* <img
@@ -51,10 +59,8 @@ export const Class = ({ data }) => {
             <Card.Title>{data.name}</Card.Title>
             <Card.Text>Time: {data.time}</Card.Text>
             <Card.Text>Location: {data.location}</Card.Text>
-            <div>
-              <p className="alignleft">{data.credits} credits</p>
-              {/* <Available user={user} ride={ride} /> */}
-            </div>
+            <Card.Text>{data.credits} credits</Card.Text>
+            {type === "learn" && <Card.Text>Tutor(s):</Card.Text>}
           </Card.Body>
         </div>
       </div>

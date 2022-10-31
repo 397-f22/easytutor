@@ -45,11 +45,8 @@ export const Header = ({ showAddRides, user }) => {
               <Link className="plain-link " to="/teach">
                 Teach
               </Link>
-              <Link className="plain-link" to="/learn">
+              <Link className="plain-link" to="/">
                 Learn
-              </Link>
-              <Link className="plain-link" to="/myClasses">
-                My Classes
               </Link>
             </h1>
             <div className="d-flex justify-content-center">

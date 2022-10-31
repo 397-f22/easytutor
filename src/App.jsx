@@ -22,6 +22,52 @@ const App = () => {
   // if (typeof user === "string" || user instanceof String)
   //   return <h1>{user}</h1>;
 
+  const dataTeach = {
+    courses: {
+      0: {
+        name: "CS343 - Operating Systems",
+        location: "Mudd Building - 2nd Floor",
+        time: "December 16, 2:00 pm - 4:00 pm",
+        credits: 20,
+      },
+      1: {
+        name: "CS330 - Human Computer Interaction",
+        location: "Garage",
+        time: "December 20, 2:00 pm - 3:00 pm",
+        credits: 10,
+      },
+      2: {
+        name: "CS340 - Intro to Networking",
+        location: "Tech M164",
+        time: "December 12, 1:00 pm - 4:00 pm",
+        credits: 30,
+      },
+    },
+  };
+
+  const dataLearn = {
+    courses: {
+      0: {
+        name: "CS397 - Rapid Prototyping",
+        location: "Tech Auditorium",
+        time: "December 20, 2:00 pm - 3:00 pm",
+        credits: 10,
+      },
+      1: {
+        name: "CS343 - Operating Systems",
+        location: "Main Building - 2nd Floor",
+        time: "December 16, 2:00 pm - 4:00 pm",
+        credits: 20,
+      },
+      2: {
+        name: "CS340 - Intro to Networking",
+        location: "Tech M169",
+        time: "December 11, 3:00 pm - 4:00 pm",
+        credits: 10,
+      },
+    },
+  };
+
   return (
     <BrowserRouter>
       <Routes>
@@ -29,25 +75,20 @@ const App = () => {
           path="/"
           element={
             <div>
-              <Header></Header>
-              <ClassList />
+              <Header />
+              <ClassList data={dataLearn} type="learn" />
             </div>
           }
         ></Route>
-        {/* <Route
-          path="/allRides"
+        <Route
+          path="/teach"
           element={
             <div>
-              <Header showAddRides={true} user={user} />
-              <RideList
-                rides={rides}
-                user={user}
-                users={users}
-                updateUserRides={updateUserRides}
-              />
+              <Header />
+              <ClassList data={dataTeach} type="teach" />
             </div>
           }
-        ></Route> */}
+        ></Route>
         {/* <Route
           path="/myRides"
           element={
