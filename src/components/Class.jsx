@@ -1,8 +1,8 @@
 import "./Class.css";
 
 import Card from "react-bootstrap/Card";
+
 // import { getUser } from "./User";
-import { getUserWithId } from "../utilities/firebase";
 
 // import pikachu from "../../data/pikachu.png";
 

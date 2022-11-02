@@ -1,12 +1,15 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import { ClassList } from "./components/ClassList";
+import { Header } from "./components/Header";
+import Landing from "./components/Landing";
 import { useAuthState } from "./utilities/firebase";
 
-import Landing from "./components/Landing";
-
 const App = () => {
-  const user = getUser();
+  const user = useAuthState();
   // const [rides, rerror] = useDbData("/rides");
   // const [users, uerror] = useDbData("/users");
   // const updateUserRides = "";
@@ -71,11 +74,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/"
-              element={
-                <Landing user={user} />
-              }>
-        </Route>
+        <Route path="/" element={<Landing user={user} />}></Route>
         <Route
           path="/learn"
           element={

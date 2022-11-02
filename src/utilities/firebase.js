@@ -34,5 +34,5 @@ export const useAuthState = () => {
 
   useEffect(() => onAuthStateChanged(getAuth(firebase), setUser));
 
-  return [user];
+  return user;
 };
