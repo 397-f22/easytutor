@@ -7,6 +7,7 @@ import { ClassList } from "./components/ClassList";
 import { Header } from "./components/Header";
 import Landing from "./components/Landing";
 import { useAuthState } from "./utilities/firebase";
+import { AddSession } from "./components/AddSession";
 
 const App = () => {
   const user = useAuthState();
@@ -84,7 +85,7 @@ const App = () => {
               <ClassList data={dataLearn} type="learn" />
             </div>
           }
-        ></Route>
+        />
         <Route
           path="/teach"
           element={
@@ -93,7 +94,16 @@ const App = () => {
               <ClassList data={dataTeach} type="teach" />
             </div>
           }
-        ></Route>
+        />
+        <Route
+          path="/add_session"
+          element={
+            <div>
+              <Header />
+              <AddSession />
+            </div>
+          }
+        />
         {/* <Route
           path="/myRides"
           element={
