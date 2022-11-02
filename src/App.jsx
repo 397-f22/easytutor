@@ -6,26 +6,30 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ClassList } from "./components/ClassList";
 import { Header } from "./components/Header";
 import Landing from "./components/Landing";
-import { useAuthState } from "./utilities/firebase";
+import { useDbData } from "./utilities/firebase";
+import { getUser} from "./components/User";
 import { AddSession } from "./components/AddSession";
 
 const App = () => {
-  const user = useAuthState();
+    const user = getUser();
+    const [users, uerror] = useDbData("/users");
+    const [classes, cerror] = useDbData("/classes");
+    console.log(users);
+    console.log(classes);
 
-  // const [rides, rerror] = useDbData("/rides");
-  // const [users, uerror] = useDbData("/users");
+    if (typeof user === "string" || user instanceof String)
+      return <h1>{user}</h1>;
+
+    if (uerror) return <h1>Error loading users: {uerror.toString()}</h1>;
+    if (users === undefined) return <h1>Loading users...</h1>;
+    if (!users) return <h1>No users found</h1>;
+
+    if (cerror) return <h1>Error loading classes: {cerror.toString()}</h1>;
+    if (classes === undefined) return <h1>Loading classes...</h1>;
+    if (!classes) return <h1>No classes found</h1>;
+
   // const updateUserRides = "";
 
-  // if (rerror) return <h1>Error loading rides: {rerror.toString()}</h1>;
-  // if (rides === undefined) return <h1>Loading rides...</h1>;
-  // if (!rides) return <h1>No rides found</h1>;
-
-  // if (uerror) return <h1>Error loading users: {uerror.toString()}</h1>;
-  // if (users === undefined) return <h1>Loading users...</h1>;
-  // if (!users) return <h1>No users found</h1>;
-
-  // if (typeof user === "string" || user instanceof String)
-  //   return <h1>{user}</h1>;
 
   const dataTeach = {
     courses: {
