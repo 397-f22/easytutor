@@ -38,6 +38,7 @@ export const Header = ({ showAddRides, user }) => {
         <Link className="plain-link text-white" to="/">
           <Logo isDark={false} size={30} />
         </Link>
+        <SignOutButton />
         <Navbar.Offcanvas className="flex-grow-1 pe-3" placement="top">
           <Offcanvas.Header closeButton></Offcanvas.Header>
           <Offcanvas.Body>
