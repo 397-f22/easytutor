@@ -77,7 +77,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing user={user} />}></Route>
-        <Route
+        {/* <Route
           path="/learn"
           element={
             <div>
@@ -85,7 +85,7 @@ const App = () => {
               <ClassList data={dataLearn} type="learn" />
             </div>
           }
-        />
+        /> */}
         <Route
           path="/teach"
           element={
@@ -96,7 +96,7 @@ const App = () => {
           }
         />
         <Route
-          path="/add_session"
+          path="/learn"
           element={
             <div>
               <Header />
