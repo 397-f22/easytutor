@@ -8,6 +8,7 @@ import { Header } from "./components/Header";
 import Landing from "./components/Landing";
 import { useDbData } from "./utilities/firebase";
 import { getUser} from "./components/User";
+import { AddSession } from "./components/AddSession";
 
 const App = () => {
     const user = getUser();
@@ -80,7 +81,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing user={user} />}></Route>
-        <Route
+        {/* <Route
           path="/learn"
           element={
             <div>
@@ -88,7 +89,7 @@ const App = () => {
               <ClassList data={dataLearn} type="learn" />
             </div>
           }
-        ></Route>
+        /> */}
         <Route
           path="/teach"
           element={
@@ -97,7 +98,16 @@ const App = () => {
               <ClassList data={dataTeach} type="teach" />
             </div>
           }
-        ></Route>
+        />
+        <Route
+          path="/learn"
+          element={
+            <div>
+              <Header />
+              <AddSession />
+            </div>
+          }
+        />
         {/* <Route
           path="/myRides"
           element={
