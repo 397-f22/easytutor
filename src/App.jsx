@@ -10,6 +10,7 @@ import { useAuthState } from "./utilities/firebase";
 
 const App = () => {
   const user = useAuthState();
+
   // const [rides, rerror] = useDbData("/rides");
   // const [users, uerror] = useDbData("/users");
   // const updateUserRides = "";
