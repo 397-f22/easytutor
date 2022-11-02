@@ -5,6 +5,15 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import {
+  child,
+  getDatabase,
+  onValue,
+  push,
+  ref,
+  set,
+  update,
+} from "firebase/database";
 import { useEffect, useState } from "react";
 
 import { initializeApp } from "firebase/app";
@@ -20,6 +29,7 @@ const firebaseConfig = {
 };
 
 const firebase = initializeApp(firebaseConfig);
+const database = getDatabase(firebase);
 
 export const signInWithGoogle = () => {
   signInWithPopup(getAuth(firebase), new GoogleAuthProvider());
@@ -36,3 +46,42 @@ export const useAuthState = () => {
 
   return user;
 };
+
+export const useDbData = (path) => {
+  const [data, setData] = useState();
+  const [error, setError] = useState(null);
+
+  useEffect(
+    () =>
+      onValue(
+        ref(database, path),
+        (snapshot) => {
+          setData(snapshot.val());
+        },
+        (error) => {
+          setError(error);
+        }
+      ),
+    [path]
+  );
+
+  return [data, error];
+};
+
+//Add new user
+export const addNewUser = (newUser, uid) => {
+  set(ref(database, "users/" + uid), newUser);
+};
+
+// Get user from user uid
+export const getUserWithId = (uid) => {
+  const path = `/users/${uid}`;
+  const [user, error] = useDbData(path);
+
+  if (error) return error.toString();
+  if (user === undefined) return "Loading...";
+  if (!user) return "Organizer not found";
+
+  return user;
+};
+
