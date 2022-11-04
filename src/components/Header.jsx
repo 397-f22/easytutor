@@ -46,7 +46,7 @@ export const Header = ({ showAddRides, user }) => {
               <Link className="plain-link " to="/teach">
                 Teach
               </Link>
-              <Link className="plain-link" to="/">
+              <Link className="plain-link" to="/learn">
                 Learn
               </Link>
             </h1>

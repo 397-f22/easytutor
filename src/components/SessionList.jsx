@@ -1,18 +1,18 @@
-import "./ClassList.css";
+import "./SessionList.css";
 
-import { Class } from "./Class";
 import Form from "react-bootstrap/Form";
 // import FuzzySearch from "fuzzy-search";
 import InputGroup from "react-bootstrap/InputGroup";
 // import { RideInfo } from "./RideInfo";
 import { Search } from "react-bootstrap-icons";
+import { Session } from "./Session";
 
 // import { useDbData } from "../utilities/firebase";
 // import { useState } from "react";
 
 // import { BookRide } from "./BookRide";
 
-export const ClassList = ({ data, type }) => {
+export const SessionList = ({ sessions, courses }) => {
   // const [show, setShow] = useState(false);
   // const [selectedRide, setSelectedRide] = useState();
   // const [searchstr, setSearch] = useState("");
@@ -42,7 +42,6 @@ export const ClassList = ({ data, type }) => {
   // const filteredRides = () => {
   //   return searchstr == "" ? rides : searcher.search(searchstr);
   // };
-
   return (
     <div>
       <div className="SearchBar">
@@ -51,7 +50,7 @@ export const ClassList = ({ data, type }) => {
             <Search size={30} />
           </InputGroup.Text>
           <Form.Control
-            placeholder="Search for classes"
+            placeholder="Search for courses"
             // onChange={(change) => setSearch(change.target.value)}
           />
         </InputGroup>
@@ -61,8 +60,8 @@ export const ClassList = ({ data, type }) => {
           ride.key = id;
           return <Ride user={user} key={id} ride={ride} handleShow={handleShow} />;
         })} */}
-        {Object.entries(data.courses).map(([id, course]) => {
-          return <Class key={id} data={course} type={type} />;
+        {Object.entries(sessions).map(([id, session]) => {
+          return <Session key={id} session={session} courses={courses} />;
         })}
       </div>
       {/* <RideInfo
