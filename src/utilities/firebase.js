@@ -68,7 +68,6 @@ export const useDbData = (path) => {
   return [data, error];
 };
 
-//Add new user
 export const addUser = (user) => {
   const newUser = {
     email: user.email,
@@ -80,25 +79,25 @@ export const addUser = (user) => {
   set(ref(database, "users/" + user.uid), newUser);
 };
 
-//Add new session 
 export const addSession = (course, date, duration, location, student) => {
   const newSession = {
     course: course,
     date: date,
-    duration: duration, 
-    location: location, 
-    student: student
+    duration: duration,
+    location: location,
+    student: student,
   };
 
   // Get a key for a new ride.
   const key = push(child(ref(database), "sessions")).key;
+  console.log(key);
 
   // Write the new post's data simultaneously in the posts list and the user's post list.
   const updates = {};
   updates["/sessions/" + key] = newSession;
 
   return update(ref(database), updates);
-}; 
+};
 
 // Get user from user uid
 export const getUserWithId = (uid) => {
@@ -111,4 +110,3 @@ export const getUserWithId = (uid) => {
 
   return user;
 };
-
