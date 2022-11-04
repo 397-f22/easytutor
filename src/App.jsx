@@ -7,29 +7,28 @@ import { ClassList } from "./components/ClassList";
 import { Header } from "./components/Header";
 import Landing from "./components/Landing";
 import { useDbData } from "./utilities/firebase";
-import { getUser} from "./components/User";
+import { getUser } from "./components/User";
 import { AddSession } from "./components/AddSession";
 
 const App = () => {
-    const user = getUser();
-    const [users, uerror] = useDbData("/users");
-    const [classes, cerror] = useDbData("/classes");
-    console.log(users);
-    console.log(classes);
+  const user = getUser();
+  const [users, uerror] = useDbData("/users");
+  const [courses, cerror] = useDbData("/courses");
+  console.log(users);
+  console.log(courses);
 
-    if (typeof user === "string" || user instanceof String)
-      return <h1>{user}</h1>;
+  if (typeof user === "string" || user instanceof String)
+    return <h1>{user}</h1>;
 
-    if (uerror) return <h1>Error loading users: {uerror.toString()}</h1>;
-    if (users === undefined) return <h1>Loading users...</h1>;
-    if (!users) return <h1>No users found</h1>;
+  if (uerror) return <h1>Error loading users: {uerror.toString()}</h1>;
+  if (users === undefined) return <h1>Loading users...</h1>;
+  if (!users) return <h1>No users found</h1>;
 
-    if (cerror) return <h1>Error loading classes: {cerror.toString()}</h1>;
-    if (classes === undefined) return <h1>Loading classes...</h1>;
-    if (!classes) return <h1>No classes found</h1>;
+  if (cerror) return <h1>Error loading courses: {cerror.toString()}</h1>;
+  if (courses === undefined) return <h1>Loading courses...</h1>;
+  if (!courses) return <h1>No courses found</h1>;
 
   // const updateUserRides = "";
-
 
   const dataTeach = {
     courses: {
@@ -81,15 +80,6 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing user={user} />}></Route>
-        {/* <Route
-          path="/learn"
-          element={
-            <div>
-              <Header />
-              <ClassList data={dataLearn} type="learn" />
-            </div>
-          }
-        /> */}
         <Route
           path="/teach"
           element={
@@ -104,28 +94,10 @@ const App = () => {
           element={
             <div>
               <Header />
-              <AddSession />
+              <AddSession courses={courses} user={user} />
             </div>
           }
         />
-        {/* <Route
-          path="/myRides"
-          element={
-            <div>
-              <Header showAddRides={true} user={user} />
-              <MyRides rides={rides} user={user} users={users} />
-            </div>
-          }
-        ></Route> */}
-        {/* <Route
-          path="/addRide"
-          element={
-            <div>
-              <Header showAddRides={false} user={user} />
-              <AddRide user={user} />
-            </div>
-          }
-        ></Route> */}
       </Routes>
     </BrowserRouter>
   );

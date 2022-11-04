@@ -11,9 +11,9 @@ export const DateTimeForm = () => {
         <Form.Label>Start Time</Form.Label>
         <Form.Control type="time" />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="time">
-        <Form.Label>End Time</Form.Label>
-        <Form.Control type="time" />
+      <Form.Group className="mb-3" controlId="duration">
+        <Form.Label>Hours</Form.Label>
+        <Form.Control type="number"/>
       </Form.Group>
     </div>
   );
