@@ -4,9 +4,11 @@ import { Button, Container, Navbar, Offcanvas } from "react-bootstrap";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { signInWithGoogle, signOut, useAuthState } from "../utilities/firebase";
 
+import Image from "react-bootstrap/Image";
 // import { getUser } from "./User";
 import { Logo } from "./Logo";
 import { Plus } from "react-bootstrap-icons";
+import logodark from "../static/logodark.svg";
 
 const SignOutButton = () => {
   const navigate = useNavigate();
@@ -32,14 +34,19 @@ const AuthButton = () => {
 
 export const Header = ({ showAddRides, user }) => {
   return (
-    <Navbar bg="dark" variant="dark" expand={false}>
+    <Navbar bg="light" variant="light" expand={false}>
       <Container fluid>
         <Navbar.Toggle className="mx-2" />
         <Link className="plain-link text-white" to="/">
-          <Logo isDark={false} size={30} />
+          <Image src={logodark} width={100}></Image>
         </Link>
         <SignOutButton />
-        <Navbar.Offcanvas className="flex-grow-1 pe-3" placement="top">
+        <Navbar.Offcanvas
+          bg="dark"
+          variant="dark"
+          className="flex-grow-1 pe-3"
+          placement="top"
+        >
           <Offcanvas.Header closeButton></Offcanvas.Header>
           <Offcanvas.Body>
             <h1>

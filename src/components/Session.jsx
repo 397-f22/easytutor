@@ -42,19 +42,15 @@ export const Session = ({ session, courses }) => {
 
   return (
     <Card className="m-3">
-      <div className="row">
-        <div className="cardBodyDiv">
-          <Card.Body>
-            <Card.Title>
-              {session.course} - {courseName}
-            </Card.Title>
-            <Card.Text>Date: {date}</Card.Text>
-            <Card.Text>Time: {time}</Card.Text>
-            <Card.Text>Location: {session.location}</Card.Text>
-            <Card.Text>{credits} credits</Card.Text>
-          </Card.Body>
-        </div>
-      </div>
+      <Card.Header>
+        {session.course} - {courseName}
+      </Card.Header>
+      <Card.Body>
+        <Card.Text>Date: {date}</Card.Text>
+        <Card.Text>Time: {time}</Card.Text>
+        <Card.Text>Location: {session.location}</Card.Text>
+        <Card.Text>{credits} credits</Card.Text>
+      </Card.Body>
     </Card>
   );
 };

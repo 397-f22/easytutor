@@ -2,33 +2,12 @@
   height: 100%;
 }
 
-.alignleft {
-  float: left;
+.card-header {
+  background-color: #ddd5f3;
+  text-align: center;
+  padding: 10px;
 }
 
-.alignright {
-  float: right;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  margin: 0px;
-}
-
-.profilePicDiv {
-  width: 23vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 50px;
-}
-
-.profilePic {
-  border-radius: 50%;
-  max-width: 150px;
-  max-height: 150px;
-  height: 20vw;
-  width: 20vw;
-  border: 3px solid #555;
+.card-body {
+  padding-left: 30px;
 }
