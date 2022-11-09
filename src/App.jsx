@@ -9,6 +9,7 @@ import Landing from "./components/Landing";
 import { SessionList } from "./components/SessionList";
 import { getUser } from "./components/User";
 import { useDbData } from "./utilities/firebase";
+import { UserProfile } from "./components/UserProfile";
 
 const App = () => {
   const user = getUser();
@@ -53,7 +54,15 @@ const App = () => {
             </div>
           }
         />
-        <Route path="/mySessions" element={<div></div>}></Route>
+        <Route
+          path="/mySessions"
+          element={
+            <div>
+              <Header />
+              <UserProfile sessions={sessions} user={user} courses={courses} />
+            </div>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
