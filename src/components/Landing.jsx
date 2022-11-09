@@ -8,7 +8,7 @@ import logodark from "../static/logodark.svg";
 
 const Landing = ({ user }) => {
   if (user) {
-    return <Navigate to="/learn" />;
+    return <Navigate to="/teach" />;
   } else {
     return (
       <div className="landing">

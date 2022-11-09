@@ -3,19 +3,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { ClassList } from "./components/ClassList";
+import { AddSession } from "./components/AddSession";
 import { Header } from "./components/Header";
 import Landing from "./components/Landing";
-import { useDbData } from "./utilities/firebase";
+import { SessionList } from "./components/SessionList";
 import { getUser } from "./components/User";
-import { AddSession } from "./components/AddSession";
+import { useDbData } from "./utilities/firebase";
 
 const App = () => {
   const user = getUser();
   const [users, uerror] = useDbData("/users");
-  const [courses, cerror] = useDbData("/courses");
-  console.log(users);
-  console.log(courses);
+  const [courses, c_error] = useDbData("/courses");
+  const [sessions, s_error] = useDbData("/sessions");
 
   if (typeof user === "string" || user instanceof String)
     return <h1>{user}</h1>;
@@ -24,57 +23,13 @@ const App = () => {
   if (users === undefined) return <h1>Loading users...</h1>;
   if (!users) return <h1>No users found</h1>;
 
-  if (cerror) return <h1>Error loading courses: {cerror.toString()}</h1>;
+  if (c_error) return <h1>Error loading courses: {c_error.toString()}</h1>;
   if (courses === undefined) return <h1>Loading courses...</h1>;
   if (!courses) return <h1>No courses found</h1>;
 
-  // const updateUserRides = "";
-
-  const dataTeach = {
-    courses: {
-      0: {
-        name: "CS343 - Operating Systems",
-        location: "Mudd Building - 2nd Floor",
-        time: "December 16, 2:00 pm - 4:00 pm",
-        credits: 20,
-      },
-      1: {
-        name: "CS330 - Human Computer Interaction",
-        location: "Garage",
-        time: "December 20, 2:00 pm - 3:00 pm",
-        credits: 10,
-      },
-      2: {
-        name: "CS340 - Intro to Networking",
-        location: "Tech M164",
-        time: "December 12, 1:00 pm - 4:00 pm",
-        credits: 30,
-      },
-    },
-  };
-
-  const dataLearn = {
-    courses: {
-      0: {
-        name: "CS397 - Rapid Prototyping",
-        location: "Tech Auditorium",
-        time: "December 20, 2:00 pm - 3:00 pm",
-        credits: 10,
-      },
-      1: {
-        name: "CS343 - Operating Systems",
-        location: "Main Building - 2nd Floor",
-        time: "December 16, 2:00 pm - 4:00 pm",
-        credits: 20,
-      },
-      2: {
-        name: "CS340 - Intro to Networking",
-        location: "Tech M169",
-        time: "December 11, 3:00 pm - 4:00 pm",
-        credits: 10,
-      },
-    },
-  };
+  if (s_error) return <h1>Error loading sessions: {s_error.toString()}</h1>;
+  if (sessions === undefined) return <h1>Loading sessions...</h1>;
+  if (!sessions) return <h1>No sessions found</h1>;
 
   return (
     <BrowserRouter>
@@ -83,9 +38,9 @@ const App = () => {
         <Route
           path="/teach"
           element={
-            <div>
+            <div className="background">
               <Header />
-              <ClassList data={dataTeach} type="teach" />
+              <SessionList sessions={sessions} courses={courses} />
             </div>
           }
         />
@@ -98,6 +53,7 @@ const App = () => {
             </div>
           }
         />
+        <Route path="/mySessions" element={<div></div>}></Route>
       </Routes>
     </BrowserRouter>
   );

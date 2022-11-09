@@ -1,0 +1,13 @@
+.card {
+  height: 100%;
+}
+
+.card-header {
+  background-color: #ddd5f3;
+  text-align: center;
+  padding: 10px;
+}
+
+.card-body {
+  padding-left: 30px;
+}
