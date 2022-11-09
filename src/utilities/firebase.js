@@ -90,12 +90,20 @@ export const addSession = (course, date, duration, location, student) => {
 
   // Get a key for a new ride.
   const key = push(child(ref(database), "sessions")).key;
-  console.log(key);
 
   // Write the new post's data simultaneously in the posts list and the user's post list.
   const updates = {};
   updates["/sessions/" + key] = newSession;
 
+  return update(ref(database), updates);
+};
+
+export const addSessionToTutor = (sessid, tutorid) => {
+  const path = "/users/" + tutorid + "/teacherOf";
+  const key = push(child(ref(database), path)).key;
+
+  const updates = {};
+  updates[path + "/" + key] = sessid;
   return update(ref(database), updates);
 };
 

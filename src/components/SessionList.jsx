@@ -12,7 +12,7 @@ import { Session } from "./Session";
 
 // import { BookRide } from "./BookRide";
 
-export const SessionList = ({ sessions, courses }) => {
+export const SessionList = ({ sessions, courses, user }) => {
   // const [show, setShow] = useState(false);
   // const [selectedRide, setSelectedRide] = useState();
   // const [searchstr, setSearch] = useState("");
@@ -61,7 +61,15 @@ export const SessionList = ({ sessions, courses }) => {
           return <Ride user={user} key={id} ride={ride} handleShow={handleShow} />;
         })} */}
         {Object.entries(sessions).map(([id, session]) => {
-          return <Session key={id} session={session} courses={courses} />;
+          return (
+            <Session
+              key={id}
+              session={session}
+              courses={courses}
+              user={user}
+              sessid={id}
+            />
+          );
         })}
       </div>
       {/* <RideInfo
