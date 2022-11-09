@@ -49,7 +49,7 @@ const App = () => {
           element={
             <div>
               <Header />
-              <AddSession />
+              <AddSession courses={courses} user={user} />
             </div>
           }
         />

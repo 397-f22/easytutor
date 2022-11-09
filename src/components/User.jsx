@@ -1,17 +1,4 @@
-import { useAuthState, addNewUser, useDbData } from "../utilities/firebase";
-
-const AddUserDB = (user) => {
-  if (user) {
-    const newUser = {
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      phoneNumber: user.phoneNumber,
-    };
-
-    addNewUser(newUser, user.uid);
-  }
-};
+import { useAuthState, addUser, useDbData } from "../utilities/firebase";
 
 export const getUser = () => {
   const [users, error] = useDbData("/users");
@@ -26,7 +13,9 @@ export const getUser = () => {
       users[user.uid].uid = user.uid;
       return users[user.uid];
     } else {
-      AddUserDB(user);
+      if (user) {
+        addUser(user);
+      }
       users[user.uid].uid = user.uid;
       return users[user.uid];
     }
