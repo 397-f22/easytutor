@@ -29,7 +29,6 @@ const App = () => {
 
   if (s_error) return <h1>Error loading sessions: {s_error.toString()}</h1>;
   if (sessions === undefined) return <h1>Loading sessions...</h1>;
-  if (!sessions) return <h1>No sessions found</h1>;
 
   return (
     <BrowserRouter>

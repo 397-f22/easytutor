@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
 
 const fetchJson = async (url) => {
   const response = await fetch(url);
@@ -8,5 +8,5 @@ const fetchJson = async (url) => {
 
 export const useJsonQuery = (url) => {
   const { data, isLoading, error } = useQuery([url], () => fetchJson(url));
-  return [ data, isLoading, error ];
+  return [data, isLoading, error];
 };

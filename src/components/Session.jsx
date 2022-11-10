@@ -1,5 +1,5 @@
 import "./Session.css";
-import { addSessionToTutor } from "../utilities/firebase";
+import { tutorSession } from "../utilities/firebase";
 import Card from "react-bootstrap/Card";
 
 // import { getUser } from "./User";
@@ -42,7 +42,7 @@ export const Session = ({ session, courses, user, sessid }) => {
   const credits = session.duration / 60;
 
   return (
-    <Card className="m-3" onClick={() => addSessionToTutor(sessid, user.uid)}>
+    <Card className="m-3" onClick={() => tutorSession(user.uid, sessid)}>
       <Card.Header>
         {session.course} - {courseName}
       </Card.Header>

@@ -8,33 +8,35 @@ import { Search } from "react-bootstrap-icons";
 import { Session } from "./Session";
 
 // import { useDbData } from "../utilities/firebase";
+import { hasTutor } from "../utilities/firebase";
 import { useState } from "react";
 
 // import { BookRide } from "./BookRide";
 
 export const SessionList = ({ sessions, courses, user }) => {
-  // const [show, setShow] = useState(false);
-  // const [selectedRide, setSelectedRide] = useState();
+  const availSessions = Object.entries(sessions).filter(
+    ([id, _]) => !hasTutor(id)
+  );
+
   const [searchstr, setSearch] = useState("");
 
-  // const handleClose = () => setShow(false);
-  // const handleShow = (ride) => {
-  //   setShow(true);
-  //   setSelectedRide(ride);
-  // };
-
   const searcher = new FuzzySearch(
-    null ? [] : Object.entries(sessions).map(([k, v]) => v),
+    null ? [] : availSessions.map(([k, v]) => v),
     ["course", "location"],
     {
       caseSensitive: false,
     }
   );
 
-  const searchResults = () => {
-    return searchstr == "" ? sessions : searcher.search(searchstr);
+  const getSearchResults = () => {
+    return searchstr == "" ? availSessions : searcher.search(searchstr);
   };
-  return (
+
+  return availSessions.length == 0 ? (
+    <div>
+      <h1>No sessions available</h1>
+    </div>
+  ) : (
     <div>
       <div className="SearchBar">
         <InputGroup className="mb-0">
@@ -48,7 +50,7 @@ export const SessionList = ({ sessions, courses, user }) => {
         </InputGroup>
       </div>
       <div className="mt-2">
-        {Object.entries(searchResults()).map(([id, session]) => {
+        {getSearchResults().map(([id, session]) => {
           return (
             <Session
               key={id}

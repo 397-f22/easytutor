@@ -86,21 +86,33 @@ export const addSession = (course, date, duration, location, student) => {
     duration: duration,
     location: location,
     student: student,
+    tutor: "",
   };
 
-  // Get a key for a new ride.
   const key = push(child(ref(database), "sessions")).key;
 
-  // Write the new post's data simultaneously in the posts list and the user's post list.
   const updates = {};
   updates["/sessions/" + key] = newSession;
 
   return update(ref(database), updates);
 };
 
-export const addSessionToTutor = (sessid, tutorid) => {
-  const path = "/users/" + tutorid + "/teacherOf";
-  const key = push(child(ref(database), path)).key;
+export const hasTutor = (sessid) => {
+  const [tutor, error] = useDbData("/sessions/" + sessid + "/tutor");
+
+  if (error) throw "error checking for user in database";
+
+  return tutor != null && tutor != "";
+};
+
+export const tutorSession = (tutorid, sessid) => {
+  // add user to session as tutor
+  set(ref(database, "/sessions/" + sessid + "/tutor"), tutorid);
+
+  // add session to user's tutoring list
+  const key = push(
+    child(ref(database), "/users/" + tutorid + "/teacherOf")
+  ).key;
 
   const updates = {};
   updates[path + "/" + key] = sessid;
