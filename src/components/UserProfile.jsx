@@ -37,7 +37,7 @@ export const UserProfile = ({ sessions, user, courses }) => {
   if (bothEmpty) {
     return (
       <div>
-        <h1>Your Credits: {user.credits}</h1>
+        <div className="credit-div">Your Credits: {user.credits}</div>
         <div
           style={{
             height: "80vh",
