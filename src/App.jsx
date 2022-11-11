@@ -42,7 +42,9 @@ const App = () => {
               <SessionList
                 sessions={Object.fromEntries(
                   Object.entries(sessions).filter(
-                    ([_, s]) => s.tutor === undefined || s.tutor === ""
+                    ([_, s]) =>
+                      (s.tutor === undefined || s.tutor === "") &&
+                      s.student != user.uid
                   )
                 )}
                 courses={courses}
