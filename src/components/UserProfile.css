@@ -1,6 +1,31 @@
 .title {
-  /* display: flex;
+  display: flex;
   align-items: center;
-  justify-content: center; */
+  justify-content: center;
   text-align: center;
+}
+
+.credit-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  font-size: 1.5rem;
+}
+
+h1 {
+  margin-right: 20px;
+}
+
+.panel {
+  border-radius: 20px;
+  background-color: 	white;
+  margin-top: 20px;
+  padding: 10px;  
+  margin: 10px;
+}
+
+.panel-title {
+  font-size: large;
+  margin-right: 20px;
 }

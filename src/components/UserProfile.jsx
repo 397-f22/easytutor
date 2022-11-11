@@ -1,27 +1,37 @@
 import { SessionList } from "./SessionList";
 import "./UserProfile.css";
+import Collapse from "react-bootstrap/Collapse";
+import { useState } from "react";
+import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 
 const UserList = ({ sessions, courses }) => {
-  console.log("in user list")
-  if (sessions) {
+  console.log("in user list");
+  if (sessions.length != 0) {
     return (
       <SessionList sessions={sessions} courses={courses} showSearch={false} />
     );
   }
-
-  return "";
+  return (
+    <div className="title m-2" >
+      No sessions.
+    </div>
+  );
 };
 
 export const UserProfile = ({ sessions, user, courses }) => {
-  console.log(sessions)
-  console.log(user)
-  const sessionsArray = sessions == null ? [] : Object.entries(sessions).map(([k, v]) => v);
+  const [openTeach, setOpenTeach] = useState(true);
+  const [openLearn, setOpenLearn] = useState(true);
+  const sessionsArray =
+    sessions == null ? [] : Object.entries(sessions).map(([k, v]) => v);
   console.log(sessionsArray);
-  var userLearnSessions = sessionsArray.filter(session => session.student == user.uid);
+  var userLearnSessions = sessionsArray.filter(
+    (session) => session.student == user.uid
+  );
   console.log(userLearnSessions);
-  var userTeachSessions = sessionsArray.filter(session => session.tutor == user.uid);
-  console.log(userTeachSessions)
-
+  var userTeachSessions = sessionsArray.filter(
+    (session) => session.tutor == user.uid
+  );
+  console.log(userTeachSessions);
 
   // if ("studentOf" in user) {
   //   const userLearnValues =
@@ -35,12 +45,12 @@ export const UserProfile = ({ sessions, user, courses }) => {
   //   userTeachSessions = userTeachValues.map((x) => sessions[x]);
   // }
 
-  const bothEmpty = userLearnSessions.length == 0 && userTeachSessions.length == 0;
+  const bothEmpty =
+    userLearnSessions.length == 0 && userTeachSessions.length == 0;
   if (bothEmpty) {
-    console.log("bothEmpty is false")
     return (
       <div>
-        <h4>Your Credits: {user.credits}</h4>
+        <h1>Your Credits: {user.credits}</h1>
         <div
           style={{
             height: "80vh",
@@ -56,15 +66,42 @@ export const UserProfile = ({ sessions, user, courses }) => {
   } else {
     return (
       <div>
-        <h4>Your Credits: {user.credits}</h4>
-        <div className="title">
-          <h1>Your Learning Sessions</h1>
+        <div className="credit-div">
+          Your Credits: {user.credits}
         </div>
-        <UserList sessions={userLearnSessions} courses={courses} />
-        <div className="title">
-          <h1>Your Teaching Sessions</h1>
+        <div className="panel">
+        <div
+          className="title"
+          onClick={() => setOpenLearn(!openLearn)}
+          aria-expanded={openLearn}
+          aria-controls="example-collapse-text-learn"
+        >
+          <div className="panel-title">Your Learning Sessions</div>
+          {openLearn ? <BsChevronDown /> : <BsChevronUp />}
         </div>
-        <UserList sessions={userTeachSessions} courses={courses} />
+        <Collapse in={openLearn}>
+          <div id="example-collapse-text-learn">
+            <UserList sessions={userLearnSessions} courses={courses} />
+          </div>
+        </Collapse>
+        </div>
+
+        <div className="panel">
+        <div
+          className="title"
+          onClick={() => setOpenTeach(!openTeach)}
+          aria-expanded={openTeach}
+          aria-controls="example-collapse-text-teach"
+        >
+          <div className="panel-title">Your Teaching Sessions</div>
+          {openTeach ? <BsChevronDown /> : <BsChevronUp />}
+        </div>
+        <Collapse in={openTeach}>
+          <div id="example-collapse-text-teach">
+            <UserList sessions={userTeachSessions} courses={courses} />
+          </div>
+        </Collapse>
+        </div>
       </div>
     );
   }

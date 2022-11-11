@@ -65,7 +65,7 @@ const App = () => {
         <Route
           path="/mySessions"
           element={
-            <div>
+            <div className="background">
               <Header />
               <UserProfile sessions={sessions} user={user} courses={courses} />
             </div>
