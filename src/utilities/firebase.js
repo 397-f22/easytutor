@@ -74,7 +74,7 @@ export const addUser = (user) => {
     displayName: user.displayName,
     photoURL: user.photoURL,
     phoneNumber: user.phoneNumber,
-    credits: 50
+    credits: 50,
   };
 
   set(ref(database, "users/" + user.uid), newUser);
@@ -103,14 +103,14 @@ export const tutorSession = (tutorid, sessid) => {
   set(ref(database, "/sessions/" + sessid + "/tutor"), tutorid);
 };
 
-// Get user from user uid
-export const getUserWithId = (uid) => {
-  const path = `/users/${uid}`;
-  const [user, error] = useDbData(path);
+// // Get user from user uid
+// export const getUserWithId = (uid) => {
+//   const path = `/users/${uid}`;
+//   const [user, error] = useDbData(path);
 
-  if (error) return error.toString();
-  if (user === undefined) return "Loading...";
-  if (!user) return "Organizer not found";
+//   if (error) return error.toString();
+//   if (user === undefined) return "Loading...";
+//   if (!user) return "Organizer not found";
 
-  return user;
-};
+//   return user;
+// };

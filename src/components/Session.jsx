@@ -27,7 +27,14 @@ import { tutorSession } from "../utilities/firebase";
 //   }
 // };
 
-export const Session = ({ user, session, courses, sessid }) => {
+export const Session = ({
+  user,
+  session,
+  courses,
+  sessid,
+  handleShow,
+  setSelectedSession,
+}) => {
   const d = new Date(session.date);
   const d2 = new Date(session.date);
   d2.setHours(d.getHours() + parseInt(session.duration));
@@ -47,18 +54,17 @@ export const Session = ({ user, session, courses, sessid }) => {
     hour12: true,
   });
 
-  const courseName = courses[session.course];
+  const courseName = `${session.course} - ${courses[session.course]}`;
   const credits = Math.ceil(session.duration) * 10;
 
   const handleClick = () => {
-    tutorSession(user.uid, sessid);
+    setSelectedSession(sessid);
+    handleShow();
   };
 
   return (
     <Card className="m-3" onClick={handleClick}>
-      <Card.Header>
-        {session.course} - {courseName}
-      </Card.Header>
+      <Card.Header>{courseName}</Card.Header>
       <Card.Body>
         <Card.Text>Date: {date}</Card.Text>
         <Card.Text>

@@ -3,9 +3,11 @@ import "./SessionList.css";
 import Form from "react-bootstrap/Form";
 import FuzzySearch from "fuzzy-search";
 import InputGroup from "react-bootstrap/InputGroup";
+import Modal from "react-bootstrap/Modal";
 // import { RideInfo } from "./RideInfo";
 import { Search } from "react-bootstrap-icons";
 import { Session } from "./Session";
+import { SessionConfirm } from "./SessionConfirm";
 // import { useDbData } from "../utilities/firebase";
 import { addSession } from "../utilities/firebase";
 import { useState } from "react";
@@ -13,6 +15,12 @@ import { useState } from "react";
 // import { BookRide } from "./BookRide";
 
 export const SessionList = ({ sessions, courses, user, showSearch }) => {
+  const [show, setShow] = useState(false);
+  const [selectedSession, setSelectedSession] = useState("");
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <div>
       {showSearch && (
@@ -37,47 +45,20 @@ export const SessionList = ({ sessions, courses, user, showSearch }) => {
               courses={courses}
               user={user}
               sessid={id}
+              handleShow={handleShow}
+              setSelectedSession={setSelectedSession}
             />
           );
         })}
       </div>
-      {/* <RideInfo
+      <SessionConfirm
+        handleClose={handleClose}
+        selectedSession={selectedSession}
+        courses={courses}
+        sessions={sessions}
         show={show}
-        onHide={handleClose}
-        ride={selectedRide}
         user={user}
-        users={users}
-      /> */}
+      />
     </div>
   );
 };
-
-// const [show, setShow] = useState(false);
-// const [selectedRide, setSelectedRide] = useState();
-// const [searchstr, setSearch] = useState("");
-
-// const handleClose = () => setShow(false);
-// const handleShow = (ride) => {
-//   setShow(true);
-//   setSelectedRide(ride);
-// };
-
-// const ridesValues =
-//   rides == null ? [] : Object.entries(rides).map(([k, v]) => v);
-
-// const searcher = new FuzzySearch(
-//   ridesValues,
-//   [
-//     "destination.city",
-//     "destination.state",
-//     "destination.street_address",
-//     "destination.zip",
-//   ],
-//   {
-//     caseSensitive: false,
-//   }
-// );
-
-// const filteredRides = () => {
-//   return searchstr == "" ? rides : searcher.search(searchstr);
-// };
