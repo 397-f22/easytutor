@@ -28,6 +28,8 @@ import { tutorSession } from "../utilities/firebase";
 // };
 
 export const Session = ({ user, session, courses, sessid }) => {
+  const uid = user.uid;
+  const curr_credits = user.credits;
   const d = new Date(session.date);
   const d2 = new Date(session.date);
   d2.setHours(d.getHours() + parseInt(session.duration));
@@ -51,7 +53,7 @@ export const Session = ({ user, session, courses, sessid }) => {
   const credits = Math.ceil(session.duration) * 10;
 
   return (
-    <Card className="m-3" onClick={() => tutorSession(user.uid, sessid)}>
+    <Card className="m-3" onClick={() => tutorSession(user.uid, sessid, uid, curr_credits+credits)}>
       <Card.Header>
         {session.course} - {courseName}
       </Card.Header>
