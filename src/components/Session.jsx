@@ -48,7 +48,7 @@ export const Session = ({ user, session, courses, sessid }) => {
   });
 
   const courseName = courses[session.course];
-  const credits = Math.ceil(session.duration);
+  const credits = Math.ceil(session.duration) * 10;
 
   const handleClick = () => {
     tutorSession(user.uid, sessid);
