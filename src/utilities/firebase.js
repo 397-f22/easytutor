@@ -80,7 +80,14 @@ export const addUser = (user) => {
   set(ref(database, "users/" + user.uid), newUser);
 };
 
-export const addSession = (course, date, duration, location, student, newCredits) => {
+export const addSession = (
+  course,
+  date,
+  duration,
+  location,
+  student,
+  newCredits
+) => {
   const newSession = {
     course: course,
     date: date,
@@ -100,19 +107,7 @@ export const addSession = (course, date, duration, location, student, newCredits
 };
 
 // add user to session as tutor
-export const tutorSession = (tutorid, sessid, uid, newCredits) => {
+export const tutorSession = (tutorid, sessid, newCredits) => {
   set(ref(database, "/sessions/" + sessid + "/tutor"), tutorid);
-  set(ref(database, "/users/" + uid + "/credits"), newCredits);
+  set(ref(database, "/users/" + tutorid + "/credits"), newCredits);
 };
-
-// // Get user from user uid
-// export const getUserWithId = (uid) => {
-//   const path = `/users/${uid}`;
-//   const [user, error] = useDbData(path);
-
-//   if (error) return error.toString();
-//   if (user === undefined) return "Loading...";
-//   if (!user) return "Organizer not found";
-
-//   return user;
-// };

@@ -11,31 +11,32 @@ export const SessionConfirm = ({
   sessions,
 }) => {
   const handleConfirm = () => {
-    tutorSession(user.uid, selectedSession);
-    handleClose();
+    if (user) {
+      const credits = Math.ceil(sessions[selectedSession]?.duration) * 10;
+      tutorSession(user.uid, selectedSession, user.credits + credits);
+      handleClose();
+    }
   };
 
-  if (selectedSession !== "") {
-    var course = sessions[selectedSession]?.course;
-    var courseName = `${course} - ${courses[course]}`;
+  var course = sessions[selectedSession]?.course;
+  var courseName = `${course} - ${courses[course]}`;
 
-    return (
-      <>
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>{courseName}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Book tutoring session?</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Cancel
-            </Button>
-            <Button variant="primary" onClick={handleConfirm}>
-              Confirm
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </>
-    );
-  }
+  return (
+    <>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{courseName}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Book tutoring session?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleConfirm}>
+            Confirm
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
 };
