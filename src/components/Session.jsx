@@ -38,7 +38,8 @@ export const Session = ({ session, courses }) => {
   });
 
   const courseName = courses[session.course];
-  const credits = session.duration / 60;
+  const credits = Math.ceil(session.duration / 60);
+  const duration = Math.ceil(session.duration / 60);
 
   return (
     <Card className="m-3">
@@ -48,6 +49,7 @@ export const Session = ({ session, courses }) => {
       <Card.Body>
         <Card.Text>Date: {date}</Card.Text>
         <Card.Text>Time: {time}</Card.Text>
+        <Card.Text>Duration: {duration} hours</Card.Text>
         <Card.Text>Location: {session.location}</Card.Text>
         <Card.Text>{credits} credits</Card.Text>
       </Card.Body>

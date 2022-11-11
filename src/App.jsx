@@ -41,7 +41,11 @@ const App = () => {
           element={
             <div className="background">
               <Header />
-              <SessionList sessions={sessions} courses={courses} />
+              <SessionList
+                sessions={sessions}
+                courses={courses}
+                showSearch={true}
+              />
             </div>
           }
         />

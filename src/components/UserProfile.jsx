@@ -3,7 +3,9 @@ import "./UserProfile.css";
 
 const UserList = ({ sessions, courses }) => {
   if (sessions) {
-    return <SessionList sessions={sessions} courses={courses} />;
+    return (
+      <SessionList sessions={sessions} courses={courses} showSearch={false} />
+    );
   }
 
   return "";
@@ -12,8 +14,6 @@ const UserList = ({ sessions, courses }) => {
 export const UserProfile = ({ sessions, user, courses }) => {
   var userLearnSessions;
   var userTeachSessions;
-
-  console.log(sessions);
 
   if ("studentOf" in user) {
     const userLearnValues =
