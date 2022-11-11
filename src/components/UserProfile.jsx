@@ -62,7 +62,7 @@ export const UserProfile = ({ sessions, user, courses }) => {
             aria-controls="example-collapse-text-learn"
           >
             <div className="panel-title">Your Learning Sessions</div>
-            {openLearn ? <BsChevronDown /> : <BsChevronUp />}
+            {openLearn ? <BsChevronUp /> : <BsChevronDown />}
           </div>
           <Collapse in={openLearn}>
             <div id="example-collapse-text-learn">
@@ -79,7 +79,7 @@ export const UserProfile = ({ sessions, user, courses }) => {
             aria-controls="example-collapse-text-teach"
           >
             <div className="panel-title">Your Teaching Sessions</div>
-            {openTeach ? <BsChevronDown /> : <BsChevronUp />}
+            {openTeach ?  <BsChevronUp /> : <BsChevronDown />}
           </div>
           <Collapse in={openTeach}>
             <div id="example-collapse-text-teach">
