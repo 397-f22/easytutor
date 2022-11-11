@@ -97,26 +97,9 @@ export const addSession = (course, date, duration, location, student) => {
   return update(ref(database), updates);
 };
 
-export const hasTutor = (sessid) => {
-  const [tutor, error] = useDbData("/sessions/" + sessid + "/tutor");
-
-  if (error) throw "error checking for user in database";
-
-  return tutor != null && tutor != "";
-};
-
+// add user to session as tutor
 export const tutorSession = (tutorid, sessid) => {
-  // add user to session as tutor
   set(ref(database, "/sessions/" + sessid + "/tutor"), tutorid);
-
-  // add session to user's tutoring list
-  const key = push(
-    child(ref(database), "/users/" + tutorid + "/teacherOf")
-  ).key;
-
-  const updates = {};
-  updates[path + "/" + key] = sessid;
-  return update(ref(database), updates);
 };
 
 // Get user from user uid

@@ -8,35 +8,34 @@ import { Search } from "react-bootstrap-icons";
 import { Session } from "./Session";
 
 // import { useDbData } from "../utilities/firebase";
-import { hasTutor } from "../utilities/firebase";
+import { addSession } from "../utilities/firebase";
 import { useState } from "react";
 
 // import { BookRide } from "./BookRide";
 
 export const SessionList = ({ sessions, courses, user }) => {
-  const availSessions = Object.entries(sessions).filter(
-    ([id, _]) => !hasTutor(id)
-  );
+  // const [searchstr, setSearch] = useState("");
 
-  const [searchstr, setSearch] = useState("");
+  // const availSessions = Object.entries(sessions).filter(
+  //   ([id, _]) => !hasTutor(id)
+  // );
 
-  const searcher = new FuzzySearch(
-    null ? [] : availSessions.map(([k, v]) => v),
-    ["course", "location"],
-    {
-      caseSensitive: false,
-    }
-  );
+  // const searcher = new FuzzySearch(
+  //   null ? [] : availSessions.map(([k, v]) => v),
+  //   ["course", "location"],
+  //   {
+  //     caseSensitive: false,
+  //   }
+  // );
 
-  const getSearchResults = () => {
-    return searchstr == "" ? availSessions : searcher.search(searchstr);
-  };
+  // const getSearchResults = () => {
+  //   console.log("GOT TO HERE");
+  //   // return searchstr == "" ? availSessions : searcher.search(searchstr);
+  // };
 
-  return availSessions.length == 0 ? (
-    <div>
-      <h1>No sessions available</h1>
-    </div>
-  ) : (
+  // getSearchResults();
+
+  return (
     <div>
       <div className="SearchBar">
         <InputGroup className="mb-0">
@@ -45,12 +44,12 @@ export const SessionList = ({ sessions, courses, user }) => {
           </InputGroup.Text>
           <Form.Control
             placeholder="Search for courses"
-            onChange={(change) => setSearch(change.target.value)}
+            onChange={(change) => console.log("test")}
           />
         </InputGroup>
       </div>
       <div className="mt-2">
-        {getSearchResults().map(([id, session]) => {
+        {Object.entries(sessions).map(([id, session]) => {
           return (
             <Session
               key={id}

@@ -39,7 +39,15 @@ const App = () => {
           element={
             <div className="background">
               <Header />
-              <SessionList sessions={sessions} courses={courses} user={user} />
+              <SessionList
+                sessions={Object.fromEntries(
+                  Object.entries(sessions).filter(
+                    ([_, s]) => s.tutor == undefined || s.tutor == ""
+                  )
+                )}
+                courses={courses}
+                user={user}
+              />
             </div>
           }
         />
