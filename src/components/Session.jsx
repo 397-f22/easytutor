@@ -50,8 +50,12 @@ export const Session = ({ user, session, courses, sessid }) => {
   const courseName = courses[session.course];
   const credits = Math.ceil(session.duration);
 
+  const handleClick = () => {
+    tutorSession(user.uid, sessid);
+  };
+
   return (
-    <Card className="m-3" onClick={() => tutorSession(user.uid, sessid)}>
+    <Card className="m-3" onClick={handleClick}>
       <Card.Header>
         {session.course} - {courseName}
       </Card.Header>
