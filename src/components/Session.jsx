@@ -27,7 +27,7 @@ import { tutorSession } from "../utilities/firebase";
 //   }
 // };
 
-export const Session = ({ session, courses }) => {
+export const Session = ({ user, session, courses, sessid }) => {
   const d = new Date(session.date);
   const d2 = new Date(session.date);
   d2.setHours(d.getHours() + parseInt(session.duration));

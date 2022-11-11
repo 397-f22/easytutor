@@ -6,7 +6,6 @@ import InputGroup from "react-bootstrap/InputGroup";
 // import { RideInfo } from "./RideInfo";
 import { Search } from "react-bootstrap-icons";
 import { Session } from "./Session";
-
 // import { useDbData } from "../utilities/firebase";
 import { addSession } from "../utilities/firebase";
 import { useState } from "react";
