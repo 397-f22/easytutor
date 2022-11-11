@@ -39,7 +39,7 @@ export const SessionList = ({
         </div>
       )}
       <div className="mt-2">
-        {Object.entries(sessions).filter(([id, session]) => {
+        {Object.entries(sessions).map(([id, session]) => {
           return (
             <Session
               key={id}
