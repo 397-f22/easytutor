@@ -1,6 +1,7 @@
 import "./Session.css";
 
 import Card from "react-bootstrap/Card";
+import { tutorSession } from "../utilities/firebase";
 
 // import { getUser } from "./User";
 
@@ -50,7 +51,7 @@ export const Session = ({ session, courses }) => {
   const credits = Math.ceil(session.duration);
 
   return (
-    <Card className="m-3">
+    <Card className="m-3" onClick={() => tutorSession(user.uid, sessid)}>
       <Card.Header>
         {session.course} - {courseName}
       </Card.Header>
