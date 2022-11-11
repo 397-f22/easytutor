@@ -28,12 +28,12 @@ import { tutorSession } from "../utilities/firebase";
 // };
 
 export const Session = ({
-  user,
   session,
   courses,
   sessid,
-  handleShow,
   setSelectedSession,
+  handleShow,
+  disableClick,
 }) => {
   const d = new Date(session.date);
   const d2 = new Date(session.date);
@@ -58,8 +58,10 @@ export const Session = ({
   const credits = Math.ceil(session.duration) * 10;
 
   const handleClick = () => {
-    setSelectedSession(sessid);
-    handleShow();
+    if (disableClick === false) {
+      setSelectedSession(sessid);
+      handleShow();
+    }
   };
 
   return (

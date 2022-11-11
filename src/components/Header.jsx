@@ -49,17 +49,16 @@ export const Header = ({ showAddRides, user }) => {
         >
           <Offcanvas.Header closeButton></Offcanvas.Header>
           <Offcanvas.Body>
-            <h1>
-              <Link className="plain-link " to="/teach">
-                Teach
-              </Link>
-              <Link className="plain-link" to="/learn">
-                Learn
-              </Link>
-              <Link className="plain-link" to="/mySessions">
-                My Sessions
-              </Link>
-            </h1>
+            <Link className="plain-link " to="/teach">
+              Teach
+            </Link>
+            <Link className="plain-link" to="/learn">
+              Learn
+            </Link>
+            <Link className="plain-link" to="/mySessions">
+              My Sessions
+            </Link>
+
             <div className="d-flex justify-content-center">
               {/* <AuthButton /> */}
             </div>

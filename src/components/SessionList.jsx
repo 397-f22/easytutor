@@ -10,7 +10,13 @@ import { SessionConfirm } from "./SessionConfirm";
 import { addSession } from "../utilities/firebase";
 import { useState } from "react";
 
-export const SessionList = ({ sessions, courses, user, showSearch }) => {
+export const SessionList = ({
+  sessions,
+  courses,
+  user,
+  showSearch,
+  disableClick = false,
+}) => {
   const [show, setShow] = useState(false);
   const [selectedSession, setSelectedSession] = useState("");
 
@@ -43,6 +49,7 @@ export const SessionList = ({ sessions, courses, user, showSearch }) => {
               sessid={id}
               handleShow={handleShow}
               setSelectedSession={setSelectedSession}
+              disableClick={disableClick}
             />
           );
         })}
