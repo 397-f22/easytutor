@@ -74,6 +74,7 @@ export const addUser = (user) => {
     displayName: user.displayName,
     photoURL: user.photoURL,
     phoneNumber: user.phoneNumber,
+    credits: 50
   };
 
   set(ref(database, "users/" + user.uid), newUser);
