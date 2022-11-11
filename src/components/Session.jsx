@@ -27,19 +27,27 @@ import Card from "react-bootstrap/Card";
 // };
 
 export const Session = ({ session, courses }) => {
-  const date = new Date(session.date).toLocaleString("en-US", {
+  const d = new Date(session.date);
+  const d2 = new Date(session.date);
+  d2.setHours(d.getHours() + parseInt(session.duration));
+
+  const date = d.toLocaleString("en-US", {
     month: "long",
     day: "numeric",
   });
-  const time = new Date(session.date).toLocaleString("en-US", {
+  const startTime = d.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+  const endTime = d2.toLocaleString("en-US", {
     hour: "numeric",
     minute: "numeric",
     hour12: true,
   });
 
   const courseName = courses[session.course];
-  const credits = Math.ceil(session.duration / 60);
-  const duration = Math.ceil(session.duration / 60);
+  const credits = Math.ceil(session.duration);
 
   return (
     <Card className="m-3">
@@ -48,8 +56,9 @@ export const Session = ({ session, courses }) => {
       </Card.Header>
       <Card.Body>
         <Card.Text>Date: {date}</Card.Text>
-        <Card.Text>Time: {time}</Card.Text>
-        <Card.Text>Duration: {duration} hours</Card.Text>
+        <Card.Text>
+          Time: {startTime} - {endTime}
+        </Card.Text>
         <Card.Text>Location: {session.location}</Card.Text>
         <Card.Text>{credits} credits</Card.Text>
       </Card.Body>

@@ -7,9 +7,9 @@ import { AddSession } from "./components/AddSession";
 import { Header } from "./components/Header";
 import Landing from "./components/Landing";
 import { SessionList } from "./components/SessionList";
+import { UserProfile } from "./components/UserProfile";
 import { getUser } from "./components/User";
 import { useDbData } from "./utilities/firebase";
-import { UserProfile } from "./components/UserProfile";
 
 const App = () => {
   const user = getUser();
@@ -52,7 +52,7 @@ const App = () => {
         <Route
           path="/learn"
           element={
-            <div>
+            <div className="background">
               <Header />
               <AddSession courses={courses} user={user} />
             </div>
