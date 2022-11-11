@@ -38,7 +38,8 @@ export const AddSession = ({ courses, user }) => {
       date,
       formData.duration.value,
       formData.location.value,
-      user.uid
+      user.uid,
+      user.credits - Math.ceil(formData.duration.value) * 10
     );
     navigate("/teach");
   };

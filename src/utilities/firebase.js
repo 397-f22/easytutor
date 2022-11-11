@@ -80,7 +80,7 @@ export const addUser = (user) => {
   set(ref(database, "users/" + user.uid), newUser);
 };
 
-export const addSession = (course, date, duration, location, student) => {
+export const addSession = (course, date, duration, location, student, newCredits) => {
   const newSession = {
     course: course,
     date: date,
@@ -94,13 +94,15 @@ export const addSession = (course, date, duration, location, student) => {
 
   const updates = {};
   updates["/sessions/" + key] = newSession;
+  updates["/users/" + student + "/credits"] = newCredits;
 
   return update(ref(database), updates);
 };
 
 // add user to session as tutor
-export const tutorSession = (tutorid, sessid) => {
+export const tutorSession = (tutorid, sessid, uid, newCredits) => {
   set(ref(database, "/sessions/" + sessid + "/tutor"), tutorid);
+  set(ref(database, "/users/" + uid + "/credits"), newCredits);
 };
 
 // // Get user from user uid
