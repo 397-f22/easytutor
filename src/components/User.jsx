@@ -1,4 +1,4 @@
-import { useAuthState, addUser, useDbData } from "../utilities/firebase";
+import { addUser, useAuthState, useDbData } from "../utilities/firebase";
 
 export const getUser = () => {
   const [users, error] = useDbData("/users");
@@ -16,8 +16,7 @@ export const getUser = () => {
       if (user) {
         addUser(user);
       }
-      users[user.uid].uid = user.uid;
-      return users[user.uid];
+      return user;
     }
   }
 };

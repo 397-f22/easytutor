@@ -30,7 +30,6 @@ const App = () => {
 
   if (s_error) return <h1>Error loading sessions: {s_error.toString()}</h1>;
   if (sessions === undefined) return <h1>Loading sessions...</h1>;
-
   return (
     <BrowserRouter>
       <Routes>
@@ -43,7 +42,7 @@ const App = () => {
               <SessionList
                 sessions={Object.fromEntries(
                   Object.entries(sessions).filter(
-                    ([_, s]) => s.tutor == undefined || s.tutor == ""
+                    ([_, s]) => s.tutor === undefined || s.tutor === ""
                   )
                 )}
                 courses={courses}
