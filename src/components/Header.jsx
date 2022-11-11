@@ -56,6 +56,9 @@ export const Header = ({ showAddRides, user }) => {
               <Link className="plain-link" to="/learn">
                 Learn
               </Link>
+              <Link className="plain-link" to="/mySessions">
+                My Sessions
+              </Link>
             </h1>
             <div className="d-flex justify-content-center">
               {/* <AuthButton /> */}
