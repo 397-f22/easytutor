@@ -26,6 +26,7 @@ const ButtonBar = ({ disabled }) => {
 };
 
 export const AddSession = ({ courses, user }) => {
+  const navigate = useNavigate();
   const [selCourse, setSelCourse] = useState("");
 
   const handleSubmit = (evt) => {
@@ -39,6 +40,7 @@ export const AddSession = ({ courses, user }) => {
       formData.location.value,
       user.uid
     );
+    navigate("/teach");
   };
 
   return (

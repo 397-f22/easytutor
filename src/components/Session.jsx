@@ -1,5 +1,5 @@
 import "./Session.css";
-
+import { tutorSession } from "../utilities/firebase";
 import Card from "react-bootstrap/Card";
 
 // import { getUser } from "./User";
@@ -26,11 +26,12 @@ import Card from "react-bootstrap/Card";
 //   }
 // };
 
-export const Session = ({ session, courses }) => {
+export const Session = ({ session, courses, user, sessid }) => {
   const date = new Date(session.date).toLocaleString("en-US", {
     month: "long",
     day: "numeric",
   });
+
   const time = new Date(session.date).toLocaleString("en-US", {
     hour: "numeric",
     minute: "numeric",
@@ -42,7 +43,7 @@ export const Session = ({ session, courses }) => {
   const duration = Math.ceil(session.duration / 60);
 
   return (
-    <Card className="m-3">
+    <Card className="m-3" onClick={() => tutorSession(user.uid, sessid)}>
       <Card.Header>
         {session.course} - {courseName}
       </Card.Header>

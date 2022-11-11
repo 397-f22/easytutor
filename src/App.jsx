@@ -30,7 +30,6 @@ const App = () => {
 
   if (s_error) return <h1>Error loading sessions: {s_error.toString()}</h1>;
   if (sessions === undefined) return <h1>Loading sessions...</h1>;
-  if (!sessions) return <h1>No sessions found</h1>;
 
   return (
     <BrowserRouter>
@@ -42,8 +41,13 @@ const App = () => {
             <div className="background">
               <Header />
               <SessionList
-                sessions={sessions}
+                sessions={Object.fromEntries(
+                  Object.entries(sessions).filter(
+                    ([_, s]) => s.tutor == undefined || s.tutor == ""
+                  )
+                )}
                 courses={courses}
+                user={user}
                 showSearch={true}
               />
             </div>
